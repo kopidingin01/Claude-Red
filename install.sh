@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 # claude-red installer
-# Copies offensive security skills into a Claude skills directory.
-#
-# Skills are installed flat as <target>/<skill-name>/SKILL.md (category
-# subfolders from Skills/<category>/<skill>/ are dropped) because Claude
-# Code's local skill scanner only auto-discovers skills one level deep.
+# Copies offensive security skills into a Claude skills directory, flat
+# (<target>/<skill-name>/SKILL.md) so Claude Code auto-discovers them.
 #
 # Usage:
 #   ./install.sh                                # interactive (asks for target)
@@ -14,13 +11,20 @@
 #   ./install.sh --list                         # list available categories
 #   ./install.sh --dry-run                      # show what would be copied
 #
-# Default target: ~/.claude/skills/claude-red
+# Default target: ~/.claude/skills
+#
+# Why ~/.claude/skills and not a claude-red subdirectory of it: Claude
+# Code's local skill scanner only auto-discovers skills one level deep
+# under ~/.claude/skills/ itself, not one level deeper inside a named
+# subfolder. Wherever you clone this repo (including inside
+# ~/.claude/skills/claude-red, to keep the source around for updates),
+# install.sh's output must land as a sibling of that clone, not inside it.
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILLS_DIR="$SCRIPT_DIR/Skills"
-DEFAULT_TARGET="${HOME}/.claude/skills/claude-red"
+DEFAULT_TARGET="${HOME}/.claude/skills"
 
 TARGET=""
 CATEGORY=""
@@ -84,6 +88,18 @@ else
   SOURCE="$SKILLS_DIR"
 fi
 DEST="$TARGET"
+
+# Guard against the historical footgun: installing into this repo's own
+# checkout directory nests skills one level too deep for Claude Code's
+# scanner (e.g. ~/.claude/skills/claude-red/<skill>/SKILL.md instead of
+# ~/.claude/skills/<skill>/SKILL.md) if the repo itself lives under a
+# named subfolder of a skills directory, which it normally does.
+if [ -d "$DEST" ] && [ "$(cd "$DEST" && pwd)" = "$SCRIPT_DIR" ]; then
+  echo "Warning: target '$DEST' is this repo's own checkout directory." >&2
+  echo "Claude Code only auto-discovers skills one level deep under a skills" >&2
+  echo "directory, so installing here likely won't auto-load. Use a target" >&2
+  echo "like ~/.claude/skills (the default) instead." >&2
+fi
 
 echo "Source:  $SOURCE"
 echo "Target:  $DEST  (flat: <skill-name>/SKILL.md, no category subfolder)"
