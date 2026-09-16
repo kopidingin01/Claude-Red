@@ -2,6 +2,10 @@
 # claude-red installer
 # Copies offensive security skills into a Claude skills directory.
 #
+# Skills are installed flat as <target>/<skill-name>/SKILL.md (category
+# subfolders from Skills/<category>/<skill>/ are dropped) because Claude
+# Code's local skill scanner only auto-discovers skills one level deep.
+#
 # Usage:
 #   ./install.sh                                # interactive (asks for target)
 #   ./install.sh --target ~/.claude/skills      # explicit target
@@ -24,7 +28,7 @@ DRY_RUN=0
 LIST_ONLY=0
 
 usage() {
-  sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//'
+  sed -n '2,17p' "$0" | sed 's/^# \{0,1\}//'
   exit "${1:-0}"
 }
 
@@ -76,33 +80,50 @@ if [ -n "$CATEGORY" ]; then
     exit 1
   fi
   SOURCE="$SKILLS_DIR/$CATEGORY"
-  DEST="$TARGET/$CATEGORY"
 else
   SOURCE="$SKILLS_DIR"
-  DEST="$TARGET"
 fi
+DEST="$TARGET"
 
 echo "Source:  $SOURCE"
-echo "Target:  $DEST"
+echo "Target:  $DEST  (flat: <skill-name>/SKILL.md, no category subfolder)"
 echo
+
+# Collect source SKILL.md paths and check for skill-name collisions before
+# touching the filesystem (two categories should never share a skill name,
+# but a flat target can't tell two same-named skills apart).
+skill_paths=()
+while IFS= read -r -d '' path; do
+  skill_paths+=("$path")
+done < <(find "$SOURCE" -name SKILL.md -print0 | sort -z)
+
+declare -A seen
+for path in "${skill_paths[@]}"; do
+  skill_name="$(basename "$(dirname "$path")")"
+  if [ -n "${seen[$skill_name]:-}" ]; then
+    echo "Error: skill name '$skill_name' appears under multiple categories (${seen[$skill_name]} and $path)." >&2
+    echo "Flat install can't disambiguate them — rename one of the skill directories." >&2
+    exit 1
+  fi
+  seen[$skill_name]="$path"
+done
 
 if [ "$DRY_RUN" -eq 1 ]; then
   echo "[dry-run] Would copy:"
-  find "$SOURCE" -name SKILL.md | sed "s|^$SOURCE|  $DEST|"
+  for path in "${skill_paths[@]}"; do
+    skill_name="$(basename "$(dirname "$path")")"
+    echo "  $DEST/$skill_name/SKILL.md"
+  done
   exit 0
 fi
 
-mkdir -p "$DEST"
+for path in "${skill_paths[@]}"; do
+  skill_name="$(basename "$(dirname "$path")")"
+  mkdir -p "$DEST/$skill_name"
+  cp "$path" "$DEST/$skill_name/SKILL.md"
+done
 
-# Use rsync if available for nicer output, else cp -r
-if command -v rsync >/dev/null 2>&1; then
-  rsync -a --info=stats1 "$SOURCE/" "$DEST/"
-else
-  cp -r "$SOURCE/." "$DEST/"
-  echo "Copied via cp (install rsync for progress info)."
-fi
-
-skill_count=$(find "$DEST" -name SKILL.md | wc -l | tr -d ' ')
+skill_count=${#skill_paths[@]}
 echo
 echo "Installed $skill_count skill(s) to $DEST"
 echo "Claude should now auto-discover them on next session start."
