@@ -34,15 +34,18 @@ Drop a skill into your Claude environment and it behaves like a domain specialis
 
 ```bash
 git clone https://github.com/SnailSploit/claude-red ~/.claude/skills/claude-red
+cd ~/.claude/skills/claude-red && ./install.sh
 ```
 
-Claude auto-loads matching skills based on conversational triggers (e.g., mentioning SQL injection loads `offensive-sqli`).
+`install.sh` flattens `Skills/<category>/<skill>/SKILL.md` into `<skill-name>/SKILL.md` at the install target — Claude Code's local skill scanner only auto-discovers skills one level deep, so the category-organized `Skills/` tree on its own won't auto-load. Once installed, Claude auto-loads matching skills based on conversational triggers (e.g., mentioning SQL injection loads `offensive-sqli`).
 
 To install a single category:
 
 ```bash
-git clone --filter=blob:none --sparse https://github.com/SnailSploit/claude-red
-cd claude-red && git sparse-checkout set Skills/web Skills/active-directory
+git clone --filter=blob:none --sparse https://github.com/SnailSploit/claude-red ~/.claude/skills/claude-red
+cd ~/.claude/skills/claude-red
+git sparse-checkout set Skills/web Skills/active-directory
+./install.sh
 ```
 
 ### Claude Code
