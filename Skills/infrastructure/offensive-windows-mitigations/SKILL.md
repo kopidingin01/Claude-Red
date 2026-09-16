@@ -1,29 +1,7 @@
-# SKILL: Week 6: Understanding Windows Mitigations
-
-## Metadata
-- **Skill Name**: windows-mitigations
-- **Folder**: offensive-windows-mitigations
-- **Source**: https://github.com/SnailSploit/offensive-checklist/blob/main/6-windows-mitigations.md
-
-## Description
-Deep-dive on Windows exploit mitigations: ASLR, DEP/NX, CFG, CET/Shadow Stack, SEHOP, Heap Guard, ACG, Arbitrary Code Guard. Covers both the protection mechanism and known bypass techniques. Use when researching Windows exploit mitigations, planning bypass strategies, or understanding protection depth.
-
-## Trigger Phrases
-Use this skill when the conversation involves any of:
-`Windows mitigations, ASLR, DEP, NX, CFG, CET, shadow stack, SEHOP, heap guard, ACG, mitigation bypass, exploit mitigation, Windows hardening`
-
-## Instructions for Claude
-
-When this skill is active:
-1. Load and apply the full methodology below as your operational checklist
-2. Follow steps in order unless the user specifies otherwise
-3. For each technique, consider applicability to the current target/context
-4. Track which checklist items have been completed
-5. Suggest next steps based on findings
-
 ---
-
-## Full Methodology
+name: offensive-windows-mitigations
+description: "Deep-dive on Windows exploit mitigations: ASLR, DEP/NX, CFG, CET/Shadow Stack, SEHOP, Heap Guard, ACG, Arbitrary Code Guard. Covers both the protection mechanism and known bypass techniques. Use when researching Windows exploit mitigations, planning bypass strategies, or understanding protection depth."
+---
 
 # Week 6: Understanding Windows Mitigations
 
@@ -14541,4 +14519,3 @@ After completing Weeks 6-7 (understanding mitigations), Week 8 teaches bypass te
 - **ARM64 Exploitation — PAC, BTI & MTE Bypass**: Learn ARM64-specific exploitation including pointer authentication code signing bypasses, branch target identification circumvention, and memory tagging exploitation
 
 <!-- Written by AnotherOne from @Pwn3rzs Telegram channel -->
-

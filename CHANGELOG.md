@@ -4,6 +4,10 @@ All notable changes to `claude-red` are documented here. The library follows a p
 
 ## [Unreleased]
 
+### Fixed
+
+- Converted 28 skills still using the legacy `# SKILL:` / `## Metadata` body format to proper YAML frontmatter (`name:` + `description:`). Skills without YAML frontmatter are not auto-discovered by the Claude Skills system, so these were silently failing to load and were emitting empty `name`/`description` entries in `claude-skills.json`. Affected: `offensive-ai-security`, `offensive-initial-access`, `offensive-keylogger-arch`, `offensive-windows-boundaries`, `offensive-windows-mitigations`, `offensive-edr-evasion`, `offensive-fuzzing-course`, `offensive-bug-identification`, `offensive-vuln-classes`, `offensive-oauth`, `offensive-ssrf`, `offensive-race-condition`, `offensive-waf-bypass`, `offensive-open-redirect`, `offensive-idor`, `offensive-file-upload`, `offensive-rce`, `offensive-xss`, `offensive-parameter-pollution`, `offensive-request-smuggling`, `offensive-xxe`, `offensive-crash-analysis`, `offensive-exploit-development`, `offensive-basic-exploitation`, `offensive-mitigations`, `offensive-exploit-dev-course`, `offensive-osint-methodology`, `offensive-fast-checking`. Body content (methodology, code blocks, references) is unchanged; only the header/metadata section was restructured. Regenerated `claude-skills.json` via `tools/build_manifest.py`.
+
 ### Planned
 
 - Phase 1 — Internal AD/Windows split (16 skills)

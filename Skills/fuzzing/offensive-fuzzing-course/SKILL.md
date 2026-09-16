@@ -1,29 +1,7 @@
-# SKILL: Week 2: Finding Vulnerabilities Through Fuzzing
-
-## Metadata
-- **Skill Name**: fuzzing-course
-- **Folder**: offensive-fuzzing-course
-- **Source**: https://github.com/SnailSploit/offensive-checklist/blob/main/2-fuzzing.md
-
-## Description
-Week 2 of the exploit development curriculum. Covers fuzzing methodology: target selection, corpus generation, coverage-guided fuzzing with AFL++/libFuzzer, structured fuzzing, and triage/deduplication. Use when setting up fuzz campaigns, selecting harness strategies, or triaging fuzzer output.
-
-## Trigger Phrases
-Use this skill when the conversation involves any of:
-`fuzzing curriculum, AFL++, libFuzzer, coverage-guided fuzzing, corpus generation, harness, fuzz target, mutation, triage, crash dedup, week 2, exploit dev course`
-
-## Instructions for Claude
-
-When this skill is active:
-1. Load and apply the full methodology below as your operational checklist
-2. Follow steps in order unless the user specifies otherwise
-3. For each technique, consider applicability to the current target/context
-4. Track which checklist items have been completed
-5. Suggest next steps based on findings
-
 ---
-
-## Full Methodology
+name: offensive-fuzzing-course
+description: "Week 2 of the exploit development curriculum. Covers fuzzing methodology: target selection, corpus generation, coverage-guided fuzzing with AFL++/libFuzzer, structured fuzzing, and triage/deduplication. Use when setting up fuzz campaigns, selecting harness strategies, or triaging fuzzer output."
+---
 
 # Week 2: Finding Vulnerabilities Through Fuzzing
 
@@ -2100,4 +2078,3 @@ tar czf corpus_archive/with_symlink.tar.gz /tmp/symlink_test 2>/dev/null || true
 Next week, you'll learn patch diffing - analyzing security updates to understand what was fixed and discovering variant vulnerabilities. You'll see how fuzzing discoveries lead to patches, and how analyzing those patches can reveal additional bugs.
 
 <!-- Written by AnotherOne from @Pwn3rzs Telegram channel -->
-
