@@ -109,6 +109,7 @@
       "offensive-ssrf",
       "offensive-ssti",
       "offensive-waf-bypass",
+      "offensive-web-recon",
       "offensive-xss",
       "offensive-xxe"
     ],
@@ -503,6 +504,12 @@
       "description": ""
     },
     {
+      "name": "offensive-web-recon",
+      "category": "web",
+      "path": "Skills/web/offensive-web-recon/SKILL.md",
+      "description": "Active web-server and application enumeration for the discovery phase of an engagement: DNS zone transfer testing, subdomain/virtual-host discovery on shared IPs, full-range Nmap port sweeps to catch applications on non-standard ports, and NSE/HTTP-based fingerprinting to build a complete inventory of what's actually listening. Tools: dnsrecon, Nmap, dig, gobuster/ffuf (vhost mode), httpx, whatweb. Use once you have a target domain/IP range in scope and need to enumerate every application hosted on the webserver(s) before moving to app-layer testing."
+    },
+    {
       "name": "offensive-xss",
       "category": "web",
       "path": "Skills/web/offensive-xss/SKILL.md",
@@ -599,6 +606,6 @@
       "description": "Zigbee, Thread, and Matter mesh-protocol attack methodology — IEEE 802.15.4 sniffing with TI CC2531 / CC2540 / Sonoff Zigbee Dongle E, KillerBee toolkit, Touchlink commissioning abuse with the well-known transport key, replay/injection attacks, Zigbee Cluster Library command abuse for door locks and bulbs, Thread network credential theft, Matter commissioning chain analysis, and 6LoWPAN/IPv6 routing exploitation. Use when targeting smart-home or commercial mesh deployments, Zigbee-based door locks, lighting, or sensor networks."
     }
   ],
-  "skill_count": 78,
+  "skill_count": 79,
   "category_count": 23
 }

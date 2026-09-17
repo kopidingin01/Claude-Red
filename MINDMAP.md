@@ -12,6 +12,7 @@ References for completeness checking: [MITRE ATT&CK](https://attack.mitre.org/),
 mindmap
   root((claude-red))
     Web
+      web-recon
       sqli
       xss
       ssrf
@@ -94,7 +95,7 @@ Use this table to confirm coverage of common offensive surfaces. If a row has no
 
 | Surface | Skill |
 |---|---|
-| Information gathering | `recon/offensive-osint`, `recon/offensive-osint-methodology` |
+| Information gathering | `recon/offensive-osint`, `recon/offensive-osint-methodology`, `web/offensive-web-recon` |
 | Configuration / deployment | `web/offensive-waf-bypass` |
 | Identity management | `auth/offensive-jwt`, `auth/offensive-oauth` |
 | Authentication | _(planned: `web/auth-bypass`)_ |

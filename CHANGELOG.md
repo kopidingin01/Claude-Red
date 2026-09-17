@@ -4,12 +4,16 @@ All notable changes to `claude-red` are documented here. The library follows a p
 
 ## [Unreleased]
 
+### Added
+
+- **web/** — `offensive-web-recon` (Phase 5): active webserver/application discovery — DNS zone transfer (AXFR) testing with dnsrecon/dig, standard + brute-force DNS enumeration, virtual-host/subdomain-on-shared-IP discovery, full-range Nmap port sweeps to catch applications on non-standard ports, and HTTP fingerprinting to build an application inventory
+
 ### Planned
 
 - Phase 1 — Internal AD/Windows split (16 skills)
 - Phase 2 — Cloud Identity / Hybrid (10 skills)
 - Phase 4 — IoT split (10 skills)
-- Phase 5 — Web Basics (8 skills)
+- Phase 5 — Web Basics (7 remaining skills)
 - Phase 6 — Web Advanced (10 skills)
 
 ## [0.3.0] — 2025-08

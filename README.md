@@ -7,7 +7,7 @@
 **Offensive security skills for Claude — drop-in `SKILL.md` files that turn Claude into a context-aware red team operator.**
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-78-red.svg)](#skill-index)
+[![Skills](https://img.shields.io/badge/skills-79-red.svg)](#skill-index)
 [![Categories](https://img.shields.io/badge/categories-23-orange.svg)](#categories)
 [![Stars](https://img.shields.io/github/stars/SnailSploit/claude-red?style=social)](https://github.com/SnailSploit/claude-red)
 [![Forks](https://img.shields.io/github/forks/SnailSploit/claude-red?style=social)](https://github.com/SnailSploit/claude-red/network/members)
@@ -74,7 +74,7 @@ Paste the contents of a `SKILL.md` into a Project's system prompt or prepend it 
 
 | Category | Skills | Focus |
 |---|---:|---|
-| [Web Application](#web-application) | 16 | OWASP Top 10, business logic, advanced web vulnerability classes |
+| [Web Application](#web-application) | 17 | OWASP Top 10, business logic, advanced web vulnerability classes, discovery/recon |
 | [Auth & Identity](#auth--identity) | 2 | JWT exploitation, OAuth/OIDC abuse |
 | [Active Directory](#active-directory) | 1 | On-prem AD attack methodology |
 | [Wireless](#wireless) | 14 | 802.11, WPA2/3, EAP, WPS, evil-twin, BLE, Zigbee, Z-Wave, LoRa, sub-GHz |
@@ -108,6 +108,7 @@ Paste the contents of a `SKILL.md` into a Project's system prompt or prepend it 
 
 | Skill | Description |
 |---|---|
+| [`offensive-web-recon`](Skills/web/offensive-web-recon/SKILL.md) | Webserver/application discovery — DNS zone transfers, vhost/subdomain enumeration, non-standard-port scanning |
 | [`offensive-sqli`](Skills/web/offensive-sqli/SKILL.md) | SQL injection — error-based, blind, OOB, DB-specific payloads, ORM CVEs |
 | [`offensive-xss`](Skills/web/offensive-xss/SKILL.md) | Cross-site scripting — stored, reflected, DOM-based, mutation XSS |
 | [`offensive-ssrf`](Skills/web/offensive-ssrf/SKILL.md) | Server-side request forgery — cloud metadata pivots, filter bypass |
@@ -353,7 +354,7 @@ The library is being expanded across multiple phases. See [CHANGELOG.md](CHANGEL
 | 2 | Cloud Identity — Entra, ADFS, Okta, M365 | +10 | Planned |
 | 3 | Wireless — WPA2/3, EAP, BLE, Zigbee, Z-Wave, LoRa, sub-GHz | +12 | Complete |
 | 4 | IoT — UART/JTAG, flash extraction, fault injection, RTOS, ICS | +10 | Planned |
-| 5 | Web Fundamentals — recon, auth bypass, access control, CSRF, CORS | +8 | Planned |
+| 5 | Web Fundamentals — recon, auth bypass, access control, CSRF, CORS | +8 | In Progress |
 | 6 | Web Advanced — proto pollution, SAML, OIDC, WebSocket, SSI/ESI | +10 | Planned |
 | 7 | Documentation and tooling polish | — | Complete |
 | 8 | New categories — 10 new domains with 20 skills | +20 | Complete |
