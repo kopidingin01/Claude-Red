@@ -70,6 +70,36 @@ Paste the contents of a `SKILL.md` into a Project's system prompt or prepend it 
 
 ---
 
+## OWASP Penetration Testing Tool (`owasp_pentest.py`)
+
+A standalone Python 3 tool for web application penetration testing based on OWASP Top 10 standards. Zero external dependencies required. Supports **PowerShell (Windows)**, **Termux (Android)**, and **Kali Linux**.
+
+### Execution Instructions
+
+#### 1. PowerShell (Windows)
+```powershell
+python owasp_pentest.py -t http://example.com
+```
+
+#### 2. Termux (Android)
+```bash
+pkg install python
+python owasp_pentest.py -t 192.168.1.100
+```
+
+#### 3. Kali Linux
+```bash
+python3 owasp_pentest.py -t https://target-app.local -o all
+```
+
+#### Interactive Mode
+Run without arguments to trigger interactive prompt mode:
+```bash
+python3 owasp_pentest.py
+```
+
+---
+
 ## Categories
 
 | Category | Skills | Focus |
